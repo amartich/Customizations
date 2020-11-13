@@ -1,0 +1,17 @@
+/*How to hide the terms from the standards page. 
+
+added the following page fragment under admin/students and admin/guardian: standardGrades.customTerms.content.footer.txt
+
+th[id$="Y1"], td[id$="Y1"], th[id$="S1"], td[id$="S1"], th[id$="S2"], td[id$="S2"]  {
+  display:none;
+}
+
+Got this from thread: https://groups.io/g/PSUG/topic/34374214#177923   LONG LIVE PSU Groups
+*/
+<style>
+th[id$="M3"], td[id$="M3"], th[id$="M6"], td[id$="M6"] {
+  display:none;
+}
+</style>
+
+

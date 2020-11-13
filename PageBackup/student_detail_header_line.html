@@ -1,0 +1,86 @@
+
+<!-- SOLUTION #1*** Vance M. Allen via groups.io 
+Anyel, the issue was that the <span> itself has no value, but the original code was looking at the value of the <span>. To further compound the problem, the single equals makes the JavaScript set the value to 1, instead of just checking "if" it is 1. As a result, the "if" just looks to see if setting the value to 1 is successful, and it virtually always is, so it runs the code inside. 
+I know you've since found a non-JavaScript answer but I'd already written this up by the time I saw that, and maybe it'd be helpful for understanding in case you later need JavaScript to do a similar task down the road.-->
+
+<p id="student_detail_header">~(studentname) &nbsp; ~([01]grade_level) &nbsp; ~([01]student_number) &nbsp; &nbsp; 
+~([01]track) &nbsp; &nbsp; ~(studschoolabbr;usestudschool) &nbsp; &nbsp; 
+Preferred Name: ~([Students.U_Students_Extension]Preferredname) &nbsp;&nbsp;<span id="IBDP"><strong>IBDP ~([Students.U_Students_Extension]IB_MASTER_STATUS)</strong> </span> &nbsp; &nbsp;~[enrollmentstatus]</p>
+ 
+<script>
+    $j(document).ready(function(){
+        // Let's check the database value instead of the value of the item on the page
+        if ('~([Students.U_Students_Extension]IB_MASTER_STATUS)' === '1') {
+            // Locates the ID of IBDP (your span) and sets the CSS
+            $j('#IBDP').css( { color: 'red', background: 'yellow' } );
+        } else {
+            // Pick one of these for when it's not 1... If you want it off the page completely, you can use this
+            $j('#IBDP').remove();
+            // Or if you still want it in the DOM but not showing to the user, you can do this
+            $j('#IBDP').hide();
+            // Or if you want to do what you were doing with white on white, you can do this:
+            $j('#IBDP').css( { color: 'white', background: 'white' } );
+        }
+    });
+</script>
+
+<!--While we don't have to use jQuery to do these things, PowerSchool already loads it whether you use it or not. 
+It does somewhat simplify the code for what you wanted to do. You can keep using the plain JavaScript if you prefer. 
+The main piece to take home is the "if" piece, and knowing what you're comparing. 
+The triple equals requires the data type of both items to be the same, and since I wrap both the database value and the value 
+we're looking for (1) in single quotes, they are both strings. I read somewhere a long time ago that triple equals is faster than
+double equals (even if ever so slightly), so that's just how I do it. :-)
+Lastly, sorry to derail the thread a little bit here, but I noticed in Joe's example that there is a header for DCID but 
+the value is ~([01]id). These fields are not the same thing, and people often get burned assuming they are. 
+Sometimes they happen to be the same (particularly on older records), but they are most often different in my experience. 
+If you want to reliably get the DCID there, I would recommend using ~(studentrn) instead of ~([01]id). ~(studentrn) is the record number (DCID) 
+for the selected student and ~([01]id) is the internal student ID, which is also the ID you find when you go to Teacher Comments.
+
+Hope this helps!
+
+
+
+SOLUTION # 2 -->
+
+
+<p id="student_detail_header"
+        style="background-color:
+            ~[if.~(enroll_status)=-1]#b8d0a3[/if] 
+            ~[if.~(enroll_status)=1]#ff7f7f[/if]  
+            ~[if.~(enroll_status)=2]#99ccff[/if]  
+            ~[if.~(enroll_status)=3]#bba3d0[/if];
+        font-size: 1.1em;font-weight: 700">
+        
+~(studentname) &nbsp;&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">Gr:</span>&nbsp~([01]grade_level)&nbsp; 
+
+
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">ID#:</span>&nbsp;~([01]student_number)&nbsp;
+~([01]track)&nbsp;
+~(studschoolabbr;usestudschool)&nbsp; ~[enrollmentstatus]
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">DCID:</span>&nbsp;~([01]id)&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">Mentor:</span>&nbsp;~([01]mentor)&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">School Counselor:</span>&nbsp;~([01]counselor)
+~[if.~([01]grade_level)>10]
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbqsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">College Counselor:</span>&nbsp;~([students.u_students_extension]college_counselor)
+[/if]
+</p>
+
+<!-- working code below-->
+
+<p id="student_detail_header"
+        style="background-color:
+            ~[if.~(enroll_status)=-1]#b8d0a3[/if] 
+            ~[if.~(enroll_status)=1]#ff7f7f[/if]  
+            ~[if.~(enroll_status)=2]#99ccff[/if]  
+            ~[if.~(enroll_status)=3]#bba3d0[/if];
+        font-size: 1.1em;font-weight: 700">
+
+~(studentname) &nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">Gr:</span>&nbsp~([01]grade_level)&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000">Student Number:</span>~([01]student_number)&nbsp;
+  ~([01]track)&nbsp;&nbsp;<span style="font-size: 1.0em;font-weight: 400;color:#804000">School:</span>~(studschoolabbr;usestudschool)&nbsp;&nbsp; 
+    <span style="font-size: 1.0em;font-weight: 400;color:#804000">Preferred Name:</span> ~([Students.U_Students_Extension]Preferredname) &nbsp;&nbsp;
+   ~[if.~([Students.U_Students_Extension]IB_MASTER_STATUS)=1] &nbsp;&nbsp;
+<span style="font-size: 1.0em;font-weight: 400;color:#804000"> IBDP:</span>[/if] &nbsp; &nbsp;~[enrollmentstatus]</p>

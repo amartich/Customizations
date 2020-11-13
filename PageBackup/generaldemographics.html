@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<!-- start right frame -->
+<head>
+    <title>~[text:psx.html.admin_students.generaldemographics.general_demographics]</title>
+    ~[wc:UI_js_includes]
+    ~[wc:commonscripts]
+    <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+<link href="/images/css/print.css" rel="stylesheet" media="print">
+    <link rel="stylesheet" type="text/css" href="/images/boxing.css">
+		
+    <script language="JavaScript" src="/admin/javascript/student_copyAddress.js"></script>
+		<style>
+			.clickable { cursor:pointer; }
+		</style>
+
+<script type="text/javascript">
+    var selectedAdapter = "~[displaypref:mappingadapter.selected]";
+    var mapKey = "~[x:selectedvalidationmappingadapterkey]";
+    
+    function load(){
+		prepPage();
+		// If they don't select any of the visible options for ethnicity, choose "-1" for them ...
+		var defaultEthnicity = document.getElementById("defaultEthnicity");
+		if ( defaultEthnicity ) {
+			defaultEthnicity.value = "-1";
+		}
+    }
+</script>
+
+~[x:renderboundaryobject]
+
+~[get_js_texts:psx.js.admin_validation.validationCommon.]
+<script language="JavaScript" src="/admin/validation/validationCommon.js"></script>
+</head>
+<body onload="load()">
+
+<form action="/admin/changesrecorded.white.html" method="POST" onSubmit="return validateInput()">
+~[wc:admin_header_frame_css]<!-- breadcrumb start --><a href="/admin/home.html" target="_top">~[text:psx.html.admin_students.generaldemographics.start_page]</a> &gt; <a
+        href="home.html?selectstudent=nosearch" target="_top">~[text:psx.html.admin_students.generaldemographics.student_selection]</a> &gt;~[text:psx.html.admin_students.generaldemographics.general_demographics1]<!-- breadcrumb end -->~[wc:admin_navigation_frame_css]
+
+~[wc:title_student_begin_css]~[text:psx.html.admin_students.generaldemographics.general_demographics2]~[wc:title_student_end_css]
+
+
+<!-- Start of shaded content table and bounding box -->
+<div class="box-round">
+
+<table border="0" cellspacing="0" cellpadding="4" class="linkDescList">
+<colgroup><col style="width:20%"><col></colgroup>
+
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.name]&nbsp;~[text:psx.html.admin_students.generaldemographics.last_first_mi]</td>
+    <td>
+        <input type="text" name="[01]last_name" value="" size="25" maxlength="50" id="lastName">,
+        <input type="text" name="[01]first_name" value="" size="25" maxlength="50" id="firstName">
+        <input type="text" name="[01]middle_name" value="" size="15" maxlength="30" id="middleName">
+        <strong>Preferred Name</strong> <input type="text" name="[Students.U_Students_Extension]Preferredname" value="" size="15" maxlength="30">
+        <strong>IBDP</strong><input type="checkbox" name="[Students.U_Students_Extension]IB_MASTER_STATUS" value="" size="2" maxlength="2">
+    </td>
+</tr>
+
+<tr class="headerrow">
+    <td colspan="2" class="bold">~[text:psx.html.admin_students.generaldemographics.home_address]</td>
+</tr>
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.street_aptsuite]</td>
+    <td>
+        <input type="text" name="[01]street" size="45" id="pstreet" value="">
+        <input type="text" name="" value="" size="10" id="papt">
+    </td>
+</tr>
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.city_state_zip]</td>
+    <td>
+        <input type="text" name="[01]city" value="" size="30" id="pcity">
+        <input type="text" name="[01]state" value="" size="2" id="pstate">
+        <input type="text" name="[01]zip" value="" size="10" id="pzip">
+
+        <input type="hidden" name="orig_street" value="~([01]street)" id="orig_pstreet">
+        <input type="hidden" name="orig_city" value="~([01]city)" id="orig_pcity">
+        <input type="hidden" name="orig_state" value="~([01]state)" id="orig_pstate">
+        <input type="hidden" name="orig_zip" value="~([01]zip)" id="orig_pzip">
+    </td>
+
+</tr>
+
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.geocode]</td>
+    <td>
+        <input type="hidden" name="[01]geocode" value="" id="pgeocode" size="50"/>
+        <div id="pgeocodehtml"></div>  <div id="boundaryIconDiv"></div> 
+    </td>
+</tr>
+~[if.~[displaypref:mappingadapter.selected]=""]
+[else]
+~[if#geocodeif1.security.canModifyField=students.geocode]
+<tr>
+    <td> </td>
+    <td>
+        <input type="button" id="validatePrimaryAddress" value="~[text:psx.html.admin_students.generaldemographics.validate]" onclick="validatePrimaryAddress()">
+    </td>
+</tr>
+[/if#geocodeif1]
+[/if]
+
+<tr class="headerrow">
+    <td colspan="2" class="bold">~[text:psx.html.admin_students.generaldemographics.mailing_address_]<a href="javascript:void(copyAddress())" onClick="copyAddress(); displayGeocode('m');">~[text:psx.html.admin_students.generaldemographics.copy_from_home_address]</a></td>
+</tr>
+
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.street_aptsuite1]</td>
+    <td>
+        <input type="text" name="[01]mailing_street" value="" size="45" id="mstreet">
+        <input type="text" name="" value="" size="10" id="mapt">
+    </td>
+</tr>
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.city_state_zip1]</td>
+    <td>
+        <input type="text" name="[01]mailing_city" value="" size="30" id="mcity">
+        <input type="text" name="[01]mailing_state" value="" size="2" id="mstate">
+        <input type="text" name="[01]mailing_zip" value="" size="10" id="mzip">
+
+        <input type="hidden" name="orig_mailingstreet" value="~([01]mailing_street)" id="orig_mstreet">
+        <input type="hidden" name="orig_mailingcity" value="~([01]mailing_city)" id="orig_mcity">
+        <input type="hidden" name="orig_mailingstate" value="~([01]mailing_state)" id="orig_mstate">
+        <input type="hidden" name="orig_mailingzip" value="~([01]mailing_zip)" id="orig_mzip">
+    </td>
+</tr>
+
+<tr>
+    <td class="subhead">~[text:psx.html.admin_students.generaldemographics.geocode1]</td>
+    <td>
+        <input type="hidden" name="[01]mailing_geocode" value="" id="mgeocode" size="50"/>
+        <div id="mgeocodehtml"></div>
+    </td>
+</tr>
+~[if.~[displaypref:mappingadapter.selected]=""]
+[else]
+~[if#geocodeif2.security.canModifyField=students.mailing_geocode]
+<tr>
+    <td></td>
+    <td>
+        <input type="button" id="validateMailingAddress" value="~[text:psx.html.admin_students.generaldemographics.validate1]" onclick="validateMailingAddress()">
+    </td>
+</tr>
+[/if#geocodeif2]
+[/if]
+
+
+
+
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.home_phone]</td>
+    <td><input type="text" id="fieldHomePhone" name="[01]home_phone" value="" size="17"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.age]</td>
+    <td id="studentAge">~(age)</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.aggregate_days_of_membership,param:(YTD)]</td>
+    <td>~(aggmemdaysytd)</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.areaneighborhood]</td>
+    <td><input type="text" id="fieldArea" name="[01]area" value="" size="27"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.dob]</td>
+    <td><input type="text" id="fieldDOB" name="[01]dob" value="" size="11"></td>
+</tr>
+<tr class="headerrow">
+    <td colspan="2" class="bold">~[text:psx.html.admin_students.generaldemographics.federal_ethnicity_and_race]</td>
+</tr>
+<tr>
+	<td class="subhead">~[text:psx.html.admin_students.generaldemographics.ethnicity]</td>
+	<td>
+		<div>
+			<label>~[text:psx.html.admin_students.generaldemographics.is_the_student_hispanic_or_latino]</label>
+			<input id="defaultEthnicity" type="hidden" name="[01]FedEthnicity" value="-1">~[Comment:Note that the onload javascript will revert this back to -1 after it's been changed to whatever is currently in the DB.]
+			<div class="choicefloat"><input type="radio" id="radioFedEthYes" name="[01]FedEthnicity" value="1">~[text:psx.html.admin_students.generaldemographics.yes]</div>
+			<div class="choicefloat"><input type="radio" id="radioFedEthNo" name="[01]FedEthnicity" value="0">~[text:psx.html.admin_students.generaldemographics.no]</div>
+			~[if.pref.FRE_AllowDeclineEthnicity=1]<div class="choicefloat"><span class="declined"><input type="radio" id="radioFedEthDecline" name="[01]FedEthnicity" value="2">~[pref:FRE_DeclineEthnicityText]</span></div>[/if]
+			<div class=clearit><!-- --></div>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td class="subhead">~[text:psx.html.admin_students.generaldemographics.race]</td>
+	<td>
+		<input type="hidden" id="hiddenFieldSaveRace" name="SaveRace" value="1">
+		<input type="hidden" id="r_none_storage" name="[01]FedRaceDecline" value="0"><!-- See 'decline_race' function in raceselection_block.ftl -->
+~[brij_renderform:federalrace;:GetStudentRaceSelectionBlock]
+	</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.schedulingreporting_ethnicity]</td>
+    <td>
+			<select id="primaryethnicity" name="[01]ethnicity" special="lists.ethnicity">
+	        <option>
+	    </select>
+	</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.father,param:(last, first)]</td>
+    <td><input type="text" id="fieldFather" name="[01]father" value="" size="25"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.fathers_day_phone]</td>
+    <td><input type="text" id="fieldFatherDayPhone" name="[01]fatherdayphone" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.fathers_employer]</td>
+    <td><input type="text" id="fieldFatherEmployer" name="[01]Father_Employer" value="" size="25"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.fathers_home_phone]</td>
+    <td><input type="text" id="fieldFatherHomePhone" name="[01]Father_home_phone" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.gender]</td>
+    <td><select name="[01]gender" id="selectGender">~[x:codesetoptions;codetype=Gender;includeblank;value=~([01]gender)]</select>
+</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.grade_level]</td>
+    <td>~(grade_level)</td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.graduation_year]</td>
+    <td><input type="text" id="fieldGradYear" name="[01]graduation_year" value="" size="5"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.guardianship]</td>
+    <td><input type="text" id="fieldGuardianship" name="[01]guardianship" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold"><a href="mailto:~(guardianemail)">~[text:psx.html.admin_students.generaldemographics.guardian_email]</a></td>
+    <td><input type="text" id="fieldGuardianEmail" name="[01]guardianemail" value="" size="30"></td>
+</tr>
+
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.mother,param:(last, first)]</td>
+    <td><input type="text" id="fieldMother" name="[01]mother" value="" size="25"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.mothers_day_phone]</td>
+    <td><input type="text" id="fieldMotherDayPhone" name="[01]motherdayphone" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.mothers_employer]</td>
+    <td><input type="text" id="fieldMotherEmployer" name="[01]Mother_Employer" value="" size="25"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.mothers_home_phone]</td>
+    <td><input type="text" id="fieldMotherHomePhone" name="[01]Mother_home_phone" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.previous_student_id]</td>
+    <td><input type="text" id="fieldPrevStuId" name="[01]prevstudentid" value="" size=10></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.ssn]</td>
+    <td><input type="text" id="fieldSSN" name="[01]ssn" value="" size="13"></td>
+</tr>
+<tr>
+    <td class="bold">~[text:psx.html.admin_students.generaldemographics.student_number]</td>
+    <td><input type="text" id="fieldStuNum" name="[01]student_number" value="" size="13"></td>
+</tr>
+<!-- Start insert state specific section information -->
+~[x:insertfile;state/demographics~[displaypref:districtstate].html]
+<!-- End insert state specific section information -->
+</table>
+
+<div class="button-row"><input type="hidden" name="ac" value="prim">~[submitbutton]</div>
+</div>
+<!-- End of shaded content table and bounding box -->
+
+~[wc:admin_footer_frame_css]
+</form>
+<!--</script>-->
+~[if.~[displaypref:mappingadapter.selected]=""]
+[else]
+<script type="text/javascript">
+    addYuiButton("validatePrimaryAddress", validatePrimaryAddress);
+    addYuiButton("validateMailingAddress", validateMailingAddress);
+</script>
+[/if]
+</body>
+</html><!-- end right frame -->

@@ -1,0 +1,49 @@
+
+//This code didn't work
+<script type="text/template">
+$j( document).ready(function() {
+
+   $j('#middleName').closest("tr").after('<span> Preferred Name</span><input type="text" name="[Students.U_Students_Extension]Preferredname" value="" size="15" maxlength="30" >');
+});
+   
+</script>
+
+
+
+
+//This code worked
+//my Thread https://groups.io/g/PSUG/topic/34559906?p=Created,,,20,1,0,0
+//Vance Thread: https://groups.io/g/PSUG/message/165178?p=,,,20,0,0,0::Created,,Vance+script+text%2Ftemplate,20,2,0,25644802
+
+<script type="text/javascript">
+    $j(document).ready(function(){
+        $j('#middleName').after($j('#customFields').html());
+        $j('#customFields').remove();
+    });
+</script>
+
+<script type="text/template" id="customFields">
+<tr>
+    <td class="bold">Preferred Name</td>
+    <td><input type="text" name="[Students.U_Students_Extension]Preferredname" size="30" value="" id="preferredname"/></td>
+    
+        <td class="bold">IBDP</td>
+    <td><input type="checkbox" name="[Students.U_Students_Extension]IB_MASTER_STATUS" value="" size="2" maxlength="2" id="IBDP"/></td>
+</tr>
+</script>
+<script type="text/javascript">
+    $j(document).ready(function(){
+        $j('#middleName').after($j('#customFields').html());
+        $j('#customFields').remove();
+    });
+</script>
+
+
+//Try this, it might work better
+
+<script>
+    $j(function() {
+        $j("tr.headerrow:contains(~[text:psx.html.admin_students.generaldemographics.home_address]):first").before( $j("script#regfields").html() );
+        $j("script#regfields").remove();
+    });
+</script>

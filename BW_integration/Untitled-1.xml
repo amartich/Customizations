@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation='http://plugin.powerschool.pearson.com plugin.xsd'
+        name="boardingware-test-plugin"
+        version="1.2.0"
+        description="Plugin for testing Boardingware Integration with PowerSchool">
+
+  <oauth></oauth>	
+  
+ <access_reqquest>
+        <field table="U_STUDENTSUSERFIELDS" field="TRANSCRIPTADDRLINE1" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrLine2" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrCity" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrCountry" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrState" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrZip" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrState" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="dorm_name" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="bed_number" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="dorm_roomid" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="agent_email" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="agent_name" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="student_email" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="family_number" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="preferredname" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="day_student" access="ViewOnly" />
+        <field table="STUDENTS" field="DCID" access="ViewOnly" />
+        <field table="STUDENTS" field="STUDENT_NUMBER" access="ViewOnly" />
+        <field table="STUDENTS" field="HOME_PHONE" access="ViewOnly" />  
+        <field table="STUDENTS" field="GENDER" access="ViewOnly" />
+        <field table="STUDENTS" field="DOB" access="ViewOnly" />
+        <field table="STUDENTS" field="FIRST_NAME" access="ViewOnly" /> 
+        <field table="STUDENTS" field="LAST_NAME" access="ViewOnly" />
+        <field table="STUDENTS" field="father" access="ViewOnly" />
+        <field table="STUDENTS" field="father_email" access="ViewOnly" />
+        <field table="STUDENTS" field="father_day_phone" access="ViewOnly" />
+        <field table="STUDENTS" field="mother" access="ViewOnly" />
+        <field table="STUDENTS" field="mother_email" access="ViewOnly" />
+        <field table="STUDENTS" field="mother_day_phone" access="ViewOnly" /> 
+        <field table="STUDENTS" field="guardianemail" access="ViewOnly"/>
+        <field table="STUDENTCONTACTASSOC" field="STUDENTCONTACTASSOCID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTASSOC" field="STUDENTDCID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTASSOC" field="PERSONID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTASSOC" field="CONTACTPRIORITYORDER" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTASSOC" field="CURRRELTYPECODESETID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTDETAILID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTASSOCID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPTYPECODESETID" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPNOTE" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="ISACTIVE" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="ISEMERGENCY" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="ISCUSTODIAL" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="LIVESWITHFLG" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="SCHOOLPICKUPFLG" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="RECEIVESMAILFLG" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="EXCLUDEFROMSTATEREPORTINGFLG" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="STARTDATE" access="ViewOnly" /> 
+        <field table="STUDENTCONTACTDETAIL" field="ENDDATE" access="ViewOnly" /> 
+        <field table="CODESET" field="CODETYPE" access="ViewOnly" /> 
+        <field table="CODESET" field="CODE" access="ViewOnly" /> 
+        <field table="PERSON" field="ID" access="ViewOnly" /> 
+        <field table="PERSON" field="FIRSTNAME" access="ViewOnly" /> 
+        <field table="PERSON" field="MIDDLENAME" access="ViewOnly" /> 
+        <field table="PERSON" field="LASTNAME" access="ViewOnly" />
+        <field table="PERSON" field="ID" access="ViewOnly" />
+        <field table="EMAILADDRESS" field="EMAILADDRESSID" access="ViewOnly" /> 
+        <field table="EMAILADDRESS" field="EMAILADDRESS" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="PERSONEMAILADDRESSASSOCID" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="PERSONID" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSID" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="EMAILTYPECODESETID" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="ISPRIMARYEMAILADDRESS" access="ViewOnly" /> 
+        <field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSPRIORITYORDER" access="ViewOnly" /> 
+        <field table="ORIGINALCONTACTMAP" field="ORIGINALCONTACTTYPE" access="ViewOnly" />        
+     </access_reqquest> 
+
+
+  <publisher name="Leysin American School">
+    <contact email="amartich@las.ch" />
+  </publisher>
+  	
+</plugin>

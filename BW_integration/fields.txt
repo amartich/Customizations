@@ -1,0 +1,43 @@
+For student information
+
+home address
+Room#
+Bed #
+LAS Admissions Contact Name - this is our internal recruiter assigned to the student
+LAS Admissions Contact Email
+Faculty Family number - this is our school's program to provide paternal and sibling-like support
+For contact information
+
+Custody inforamtion
+Emergance Contact flag y/n
+Reveieve Email flag y/n
+Relationship Start/End Dates
+preferred name
+
+Student Info
+- Unique ID
+- First name
+- Last name
+- Email
+- Student reference ID
+- Home Phone
+- Mobile Phone
+- Gender
+- DOB
+- Year Level
+- Boarding status (whether they are boarder or day student)
+- Boarding house allocation (boarding house entity id or just house name)
+
+Contact Info
+- Unique ID
+- Foreign key of the student they are related to
+- First name
+- Last name
+- Relationship (to student e.g. Father)
+- Email
+- Home Phone
+- Mobile Phone
+- Address
+
+Boarding House Info
+- House name

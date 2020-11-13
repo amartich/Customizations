@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation='http://plugin.powerschool.pearson.com plugin.xsd'
+        name="boardingware-test-plugin"
+        version="1.1"
+        description="Plugin for testing Boardingware Integration with PowerSchool">
+
+  <autoinstall required="true">
+		<autoenable required="true" />
+		<autoredeploy />
+	</autoinstall>
+
+  <publisher name="Leysin American School">
+     <contact email="amartich@las.ch" />
+  </publisher>
+  <oauth />	
+  <access_request>
+        <field table="U_STUDENTSUSERFIELDS" field="TRANSCRIPTADDRLINE1" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrLine2" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrCity" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrCountry" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrState" access="ViewOnly" />
+        <field table="U_STUDENTSUSERFIELDS" field="TranscriptAddrZip" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="dorm_name" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="bed_number" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="dorm_roomid" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="agent_email" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="agent_name" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="student_email" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="family_number" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="preferredname" access="ViewOnly" />
+        <field table="U_DEF_EXT_STUDENTS" field="day_student" access="ViewOnly" />
+        <field table="STUDENTS" field="DCID" access="ViewOnly" />
+        <field table="STUDENTS" field="STUDENT_NUMBER" access="ViewOnly" />
+        <field table="STUDENTS" field="HOME_PHONE" access="ViewOnly" />  
+        <field table="STUDENTS" field="GENDER" access="ViewOnly" />
+        <field table="STUDENTS" field="DOB" access="ViewOnly" />
+        <field table="STUDENTS" field="FIRST_NAME" access="ViewOnly" /> 
+        <field table="STUDENTS" field="LAST_NAME" access="ViewOnly" />
+        <field table="STUDENTS" field="guardianemail" access="ViewOnly" />
+        <field table="SCHOOLS" field="ABBREVIATION" access="ViewOnly" /> 
+    <field table="SCHOOLS" field="SCHOOL_NUMBER" access="ViewOnly" /> 
+    <field table="STUDENTCOREFIELDS" field="AUTOSEND_HOWOFTEN" access="ViewOnly" /> 
+    <field table="PERSON" field="ID" access="ViewOnly" /> 
+    <field table="PERSON" field="FIRSTNAME" access="ViewOnly" /> 
+    <field table="PERSON" field="MIDDLENAME" access="ViewOnly" /> 
+    <field table="PERSON" field="LASTNAME" access="ViewOnly" /> 
+    <field table="PERSON" field="PREFIXCODESETID" access="ViewOnly" /> 
+    <field table="PERSON" field="SUFFIXCODESETID" access="ViewOnly" /> 
+    <field table="PERSON" field="GENDERCODESETID" access="ViewOnly" /> 
+    <field table="PERSON" field="STATECONTACTNUMBER" access="ViewOnly" /> 
+    <field table="PERSON" field="STATECONTACTID" access="ViewOnly" /> 
+    <field table="PERSON" field="EMPLOYER" access="ViewOnly" /> 
+    <field table="PERSON" field="ISACTIVE" access="ViewOnly" /> 
+    <field table="PERSON" field="EXCLUDEFROMSTATEREPORTING" access="ViewOnly" /> 
+    <field table="CODESET" field="CODETYPE" access="ViewOnly" /> 
+    <field table="CODESET" field="CODE" access="ViewOnly" /> 
+    <field table="PCAS_ACCOUNT" field="USERNAME" access="ViewOnly" /> 
+    <field table="PCAS_ACCOUNT" field="ISENABLED" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTASSOC" field="STUDENTCONTACTASSOCID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTASSOC" field="STUDENTDCID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTASSOC" field="PERSONID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTASSOC" field="CONTACTPRIORITYORDER" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTASSOC" field="CURRRELTYPECODESETID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTDETAILID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTASSOCID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPTYPECODESETID" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPNOTE" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="ISACTIVE" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="ISEMERGENCY" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="ISCUSTODIAL" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="LIVESWITHFLG" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="SCHOOLPICKUPFLG" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="RECEIVESMAILFLG" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="EXCLUDEFROMSTATEREPORTINGFLG" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="STARTDATE" access="ViewOnly" /> 
+    <field table="STUDENTCONTACTDETAIL" field="ENDDATE" access="ViewOnly" /> 
+    <field table="PHONENUMBER" field="PHONENUMBERID" access="ViewOnly" /> 
+    <field table="PHONENUMBER" field="PHONENUMBER" access="ViewOnly" /> 
+    <field table="PHONENUMBER" field="ISSMS" access="ViewOnly" /> 
+    <field table="PHONENUMBER" field="PHONENUMBEREXT" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PERSONPHONENUMBERASSOCID" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PERSONID" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERASENTERED" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERID" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PHONETYPECODESETID" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERPRIORITYORDER" access="ViewOnly" /> 
+    <field table="PERSONPHONENUMBERASSOC" field="ISPREFERRED" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="PERSONADDRESSID" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="STREET" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="LINETWO" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="CITY" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="STATESCODESETID" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="COUNTRYCODESETID" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="POSTALCODE" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="GEOCODELATITUDE" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="GEOCODELONGITUDE" access="ViewOnly" /> 
+    <field table="PERSONADDRESS" field="UNIT" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="PERSONADDRESSASSOCID" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="PERSONID" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="PERSONADDRESSID" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="ADDRESSTYPECODESETID" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="ADDRESSPRIORITYORDER" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="STARTDATE" access="ViewOnly" /> 
+    <field table="PERSONADDRESSASSOC" field="ENDDATE" access="ViewOnly" /> 
+    <field table="EMAILADDRESS" field="EMAILADDRESSID" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="PERSONEMAILADDRESSASSOCID" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="PERSONID" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSID" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="EMAILTYPECODESETID" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="ISPRIMARYEMAILADDRESS" access="ViewOnly" /> 
+    <field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSPRIORITYORDER" access="ViewOnly" /> 
+    <field table="ORIGINALCONTACTMAP" field="ORIGINALCONTACTTYPE" access="ViewOnly" />    
+  </access_request>
+  	
+</plugin>

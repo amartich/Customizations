@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ESL Report</title>
+<!-- required scripts -->
+	~[wc:commonscripts] 
+<!-- Required style sheets: screen.css, and print.css -->
+	<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+	<link href="/images/css/print.css" rel="stylesheet" media="print">
+	<style>
+		tr.highlighted td{
+			background-color: #ff9 !important;
+		}
+	</style>
+</head> 
+<body> 
+~[wc:teachers_header_css] 
+~[wc:teachers_navigation_css] 
+<!-- sets active navigation tab --> 
+~[wc:teachers_nav_css] 
+	<h1>ESL Report</h1> 
+	~[if.~(gpv.frn)#]<h2>~(coursename) ~([sections]expression)</h2>[/if]
+<!-- start of content area --> 
+	<div class="box-round"> 
+		<table class="linkDescList">
+			<tr>
+				<th>Student</th>
+				<th>ESL Classes</th>
+				<th>Count</th>
+			</tr>
+			~[tlist_sql;
+				select
+					case when count(*) > 1 then 'highlighted' else '' end,
+					students.lastfirst,
+					listagg(courses.course_name, ', ') within group (order by courses.course_name) eng_courses,
+					count(*)
+				from
+					cc
+					join sections on cc.sectionid = sections.id
+					join courses on sections.course_number = courses.course_number
+					join students on cc.studentid = students.id
+				where
+					students.enroll_status = 0
+					and students.dcid in (select dcid from ~[temp.table.current.selection:Students])
+					and sysdate between cc.dateenrolled and cc.dateleft
+					and courses.credittype = 'GP1'
+				group by
+					students.id,
+					students.lastfirst
+				having
+					count(*) > 1
+				order by
+					students.lastfirst
+			;]
+				<tr class="~(highlight)">
+					<td>~(lastfirst)</td>
+					<td>~(esl_classes)</td>
+					<td>~(count)</td>
+				</tr>
+			[/tlist_sql]
+		</table>
+	</div> 
+<!-- end of content area --> 
+~[wc:teachers_footer_css]
+</body> 
+</html>

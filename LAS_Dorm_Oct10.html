@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>LAS Dorm Dashboard</title>
+  <!-- required scripts -->
+  ~[wc:commonscripts]
+  <!-- Required style sheets: screen.css, and print.css -->
+  <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+  <link href="/images/css/print.css" rel="stylesheet" media="print">
+
+<script>
+function changeMyRoom(passid) {
+    //this function makes the value of the field txt_DormRm_ to be lst_DormRm_
+    
+    $j("#txt_DormRm_" + passid).val($j("#lst_DormRm_" + passid).val());
+    
+        //if($('#lst_DormRm_').find(':selected').prop('disabled')==true){
+          //  alert('not possible'); }
+          
+       var allRooms = new Array;
+       allRooms = $j("[id^='lst_DormRm_']");
+       
+       for (i=0;i<allRooms.length;i++) {
+          if (allRooms[i].id != 'lst_DormRm_' + passid) {
+              var rmCheck;
+              rmCheck = allRooms[i];
+              for (j = 0;j < rmCheck.length; j++) {
+                   if(rmCheck[j].innerText == $j('#lst_DormRm_' + passid).val()) {
+                       rmCheck[j].remove()
+                   }
+               }
+          }
+      }
+}
+
+  $j(document).ready(function() {
+    //populates gpv's once the form is submitted
+
+        $j('#dorm').val('~(gpv.dorm)'); 
+    
+    });
+  
+</script>
+
+
+
+</head>
+
+<body>
+  ~[wc:admin_header_css]
+  <div id="breadcrumbs">
+    <!-- breadcrumb start --><a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/dorm_dashboard/dashboard.html"target="_top">LAS Dorm Dashboard</a>
+    <!-- breadcrumb end -->
+  </div>
+  <!-- start of main menu and content -->
+  ~[wc:admin_navigation_css]
+
+  <!-- start of content area -->
+
+  <!--Begin report filters-->
+  <form name="searchform?dorm=~(gpv.dorm)" action="#" method="POST">
+   <!--  ~[DirectTable.Select:Students.U_STUDENTS_EXTENSION;dorm_name:~(gpv.dorm_name)] -->
+    <h1>LAS Dorm Dashboard</h1>
+    <div class="box-round" id="reportfilter">
+      <h2>Report Filters</h2>
+      <table border="0" cellspacing="0" cellpadding="4" id="filter" class="linkDescList" data-pstablefilter="">
+        <thead>
+          <tr>
+            <th width="10px">Dorm</th>
+            <th width="10px">Room</th>
+            <th width="10px">Student</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold">
+              <select name="dorm" id="dorm">
+                        <option  value="">All Dorms</option>
+                        <option  value="BEC-B" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>BEC-B</option>
+                        <option  value="BEC-G" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>BEC-G</option>
+                        <option  value="Beau-Site" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Beau-Site</option>
+                        <option  value="Eden" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Eden</option>
+                        <option  value="Savoy" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Savoy</option>
+                        <option  value="Vermont" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Vermont</option>
+                        <option  value="Esplanade" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Esplanade</option>
+                        <option  value="Day Student" ~[if.~(gpv.dorm;sqlText)=0] selected[/if]>Day Student</option>
+            
+            <!--             ~[tlist_sql;
+                        select distinct
+                            u_def_EXT_STUDENTS.dorm_name,
+                            case when u_def_EXT_STUDENTS.dorm_name = '~(gpv.dorm)' then 'selected' else '' end 
+d,
+                            u_def_EXT_STUDENTS.dorm_roomid
+                            
+                        from 
+                            u_def_EXT_STUDENTS 
+                        Join 
+                            students on students.dcid=u_def_EXT_STUDENTS.studentsdcid
+                        where 
+                            students.enroll_status=0
+                        
+                        order by 
+                            u_def_EXT_STUDENTS.dorm_name, u_def_EXT_STUDENTS.dorm_roomid ASC
+                            ;]
+                      <option value="~(u_def_EXT_STUDENTS.dorm_name)"~(dorm;isSelected)>~(u_def_EXT_STUDENTS.dorm_name)</option>
+                      [/tlist_sql] -->
+               </select>
+            </td>
+            <td class="bold">
+              <select name="room" id="room">
+                            <option  value='0' ~[if.~(gpv.room)=0]selected[/if]>All Rooms</option>
+                    ~[tlist_sql;
+                        select distinct
+                            u_def_EXT_STUDENTS.dorm_roomid,
+                            case when u_def_EXT_STUDENTS.dorm_roomid = '~(gpv.room;sqlText)' then ' selected' else '' end isSelected,
+                            u_def_EXT_STUDENTS.dorm_name
+                           -- students.lastfirst
+                        from 
+                            u_def_EXT_STUDENTS
+                        Join 
+                            students on students.dcid=u_def_EXT_STUDENTS.studentsdcid
+                        where 
+                            students.enroll_status=0
+                      
+                        order 
+                            by u_def_EXT_STUDENTS.dorm_name, u_def_EXT_STUDENTS.dorm_roomid ASC;]
+                            <option value="~(u_def_EXT_STUDENTS.dorm_roomid)"~(room)>~(Dorm_name) - ~(u_def_EXT_STUDENTS.dorm_roomid)</option>    
+                    [/tlist_sql]    
+                        </select>
+            </td>
+
+            <td class="st">
+              <select name="st" id="st">
+                            <option  value='0' ~[if.~(gpv.st;sqlText)=0]selected[/if]>All Students</option>
+                    ~[tlist_sql;
+                        select distinct 
+                            students.id as studentID,
+                            (case when students.lastfirst = '~(gpv.st;sqlText)' then 'selected' else ' '  end) isSelected,
+                            students.lastfirst, 
+                            u_def_EXT_STUDENTS.dorm_name,
+                            u_def_EXT_STUDENTS.dorm_roomid 
+                        from 
+                            u_def_EXT_STUDENTS
+                        Join 
+                            students on students.dcid=u_def_EXT_STUDENTS.studentsdcid
+                        where 
+                            students.enroll_status=0
+                        order by
+                            u_def_EXT_STUDENTS.dorm_name, u_def_EXT_STUDENTS.dorm_roomid ASC;]
+                            <option value="~(studentID)" ~(st)>~(students.lastfirst)</option>    
+                    [/tlist_sql]    
+                        </select>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="button-row">
+        <input type="hidden" name="showData" value="1">
+        <span class="red">&nbsp;&nbsp;Select parameters and click submit</span>
+        <input type="hidden" name="ac" value="prim">~[submitbutton]
+      </div>
+    </div>
+  </form>
+  <!--end of filters-->
+  <!--bigin content-->
+  <div class="box-round">
+    <h2>Dorms and Students</h2>
+    <form name="resultsform" action="dashboard.html?dorm=~(gpv.dorm)&room=~(gpv.room)&st=~(gpv.st)" method="POST">
+    <table border="0" cellspacing="0" cellpadding="4" class="tablesorter grid" id="results">
+
+      <thead>
+        <tr>
+          <th class="left">Dorm</th>
+          <th class="left">Current Room</th>
+          <th class="left">Select New room</th>
+          <th class="left">Student</th>
+          
+          
+      </thead>
+
+    
+
+      <tbody>
+        
+          ~[if#stu.~(gpv.st)=]
+      <tr>
+        	
+        <td colspan="100%">No results</td>
+      </tr>
+      [else#stu]
+
+
+  ~[tlist_sql; 
+            select distinct
+            students.dcid,
+        	u_def_EXT_STUDENTS.dorm_name,
+            u_def_EXT_STUDENTS.dorm_roomid,
+            students.lastfirst
+        
+            from 
+        				u_def_EXT_STUDENTS 
+        
+            Inner Join 
+        				students on students.dcid = u_def_EXT_STUDENTS.studentsdcid 
+          
+            where
+        	 students.enroll_status = 0
+   ~[if#1.~(gpv.dorm) >0]
+          and u_def_EXT_STUDENTS.dorm_name = '~(gpv.dorm)'
+    [/if#1]
+    ~[if#2.~(gpv.room)>0]
+          and u_def_EXT_STUDENTS.dorm_roomid = '~(gpv.room)'
+    [/if#2]
+    
+    ~[if#3.~(gpv.st)>0]
+          and students.id = '~(gpv.st)'
+    
+[else#3]
+          and students.enroll_status=0
+[/if#3]
+
+         order by u_def_EXT_STUDENTS.dorm_roomid, u_def_EXT_STUDENTS.dorm_name ASC
+            :] 
+            
+          <tr title="Filteredresults" class="dormResults"> 
+          <td><select name="EF-001~(dcid)-U_Students_Extension.DORM_NAME" id="lst_Dorm_~(dcid)">
+          
+                  <option  value="~(dorm_name)">~(dorm_name)</option>             
+                    <option  value="">All Dorms</option>
+                    <option  value="BEC-B">BEC-B</option>
+                    <option  value="BEC-G">BEC-G</option>
+                    <option  value="Beau-Site">Beau-Site</option>
+                    <option  value="Eden"]selected[/if]>Eden</option>
+                    <option  value="Esplanade">Esplanade</option>
+                    <option  value="Savoy">Savoy</option>
+                    <option  value="Vermont">Vermont</option>
+                    <option  value="Day Student">Day Student</option>
+              </select>
+            </td>
+              <td><input type="text" value='~(DormRoomID)' id="txt_DormRm_~(dcid)" class="checkRoom1" name="EF-001~(dcid)-U_Students_Extension.DORM_ROOMID" readonly ></td>
+               <td><select id="lst_DormRm_~(dcid)" onchange="changeMyRoom(~(dcid))" class="checkRoom2" >
+                   <option  value=""> --Select room --</option>
+                    <option  value="101-1">101-1</option>
+                    <option  value="101-2">101-2</option>
+                    <option  value="101-3">101-3</option>
+                    <option  value="104-1">104-1</option>
+                    <option  value="104-2">104-2</option>
+                    <option  value="104-3">104-3</option>
+                    <option  value="105-1">105-1</option>
+                    <option  value="105-2">105-2</option>
+                    <option  value="105-3">105-3</option>
+                    <option  value="105-4">105-4</option>
+                    <option  value="106-1">106-1</option>
+                    <option  value="106-2">106-2</option>
+                    <option  value="106-3">106-3</option>
+                    <option  value="Day Student">Day Students</option>
+                    <!--here I wil add all the rooms manually, 3 spaces or whatever the actual room has. I don't know if there's an easy eay to generate a list like this in SQL or with some fancy JS.-->
+                    
+                  
+              </select>
+              <td>~(students.lastfirst)</td> 
+              </td>
+              
+
+              [/tlist_sql] 
+              
+      
+        
+        </tr>
+        
+        [/if#stu]
+        <div class="button-row">
+        <input type="hidden" name="showData" value="1">
+        <span style="color:blue"class="blue">&nbsp;&nbsp;Save Dorm Changes</span>
+        <input type="hidden" name="ac" value="prim">~[submitbutton]
+      </div>
+            </tbody>
+        </table>
+    </form>  
+ 
+  <!-- End of results -->
+  <div style="clear: both;">
+    <p>
+      <center>Report generated at ~[time] on ~[date]</center>
+    </p>
+  </div>
+   ~[wc:admin_footer_frame_css]
+
+  </div>
+  
+  
+  <!-- end of content area -->
+  ~[wc:admin_footer_css]
+</body>
+
+</html>

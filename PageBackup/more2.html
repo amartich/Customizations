@@ -1,0 +1,129 @@
+~[frame_type:menu]
+<!DOCTYPE html>
+<html>
+<head><base target="content">
+~[get_js_texts:psx.jshtml.admin_students.more2.]
+<title>~[text:psx.html.admin_students.more2.students_menu]</title>
+~[wc:commonscripts]
+<script language="JavaScript">function newstudent() { us=prompt(pss_text('psx.jshtml.admin_students.more2.student_name'),""); if(us!=null){ window.document.forms[0].selectstudent.value=us; window.document.forms[0].submit(); }} </script>
+<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+<link href="/images/css/print.css" rel="stylesheet" media="print">
+</head>
+
+<body class="frameMenu">
+
+<form action="home.html" target="_top" method="POST">
+<input type="hidden" name="selectstudent" value="">
+
+<div id="container-frame-menu">
+
+<div id="nav-main-frame-secondary">
+    <p><a href="quicklookup.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.quick_lookup]</a></p>
+~[if.~(studentscreenaccess;printformletter.html)=1]
+    <p><a href="printformletter.html?frn=~(studentfrn)&dothisfor=single">~[text:psx.html.admin_students.more2.print_a_report]</a></p>
+[/if]
+    <p><a href="javascript:newstudent()" target="_self">~[text:psx.html.admin_students.more2.switch_student]</a></p>
+    <p class="navPrevNext"><a href="home.html?ac=jumpstudent-1&amp;rn=~(rn)" target="_top" class="button prev"></a> <a href="home.html?selectstudent=nosearch" target="_top" class="studentSearchList">~[text:psx.html.admin_students.more2.list,param:(~[x:studsinset])]</a> <a href="home.html?ac=jumpstudent1&amp;rn=~(rn)" target="_top"class="button next"></a></p>
+</div>
+<div id="nav-main-frame">
+	<!-- start of #nav-main-frame -->
+	<h3>~[text:psx.html.admin_students.more2.information]</h3>
+	<ul id="std_information">
+		~[if.~(studentscreenaccess;accessaccounts.html)=1]<li><a href="accessaccounts.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.access_accounts]</a></li>[/if]
+		~[if.~(studentscreenaccess;addresses.html)=1]<li><a href="addresses.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.addresses]</a></li>[/if]
+		~[if.~(studentscreenaccess;studentattachments.html)=1]<li><a href="studentattachments.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.attachments]</a></li>[/if]
+		~[if.~(studentscreenaccess;contacts.html)=1]<li><a href="contacts.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.contacts]</a></li>[/if]
+		~[if.~(studentscreenaccess;morecustom.html)=1]<li><a href="morecustom.html?frn=~(studentfrn)" target="_self">~[text:psx.html.admin_students.more2.custom_screens]</a></li>[/if]
+		~[if.~(studentscreenaccess;generaldemographics.html)=1]<li><a href="generaldemographics.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.demographics]</a></li>[/if]
+		~[if.~(studentscreenaccess;emergency.html)=1]<li><a href="emergency.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.emergencymedical]</a></li>[/if]
+		~[if.~(studentscreenaccess;family.html)=1]<li>~[text]psx.html.admin_students.more2.family,param:~[x:fmly_more2tag][/text]</a></li>[/if]
+		~[if.~(studentscreenaccess;health/home_health.html)=1]<li><a href="health/home_health.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.health]</a></li>[/if]
+		~[if.~(studentscreenaccess;modifydata.html)=1]<li><a href="modifydata.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.modify_info]</a></li>[/if]
+		~[if.~(studentscreenaccess;misc.html)=1]<li><a href="misc.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.other_information]</a></li>[/if]
+		~[if.~(studentscreenaccess;parentsguardian.html)=1]<li><a href="emailconfig.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.student_email]</a></li>[/if]
+		~[if.~(studentscreenaccess;parentsguardian.html)=1]<li><a href="parentsguardian.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.parentsguardian]</a></li>[/if]
+		~[if.~(studentscreenaccess;photo.html)=1]<li><a href="photo.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.photo]</a></li>[/if]
+		~[if.~(studentscreenaccess;state.html)=1]<li><a href="state/state~[displaypref:districtstate].html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.stateprovince_,param:~[displaypref:districtstate]]</a></li>[/if]
+		~[if.~(studentscreenaccess;transportation.html)=1]<li><a href="transportation.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.transportation]</a></li>[/if]
+		~[if.pref.credostatuscode=1]<li><a href="/admin/state/credo/credo_studentinfo.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.credo_student_info]</a></li>[/if]
+	</ul>
+	<h3>~[text:psx.html.admin_students.more2.academics]</h3>
+	<ul id="std_academics">
+		~[brij_render:inform-ps;:inform-student-link]
+		~[if.~(studentscreenaccess;attendance.html)=1]<li>~(ATT_SetDefaultScreen)</li>[/if]
+		~[if.~(studentscreenaccess;attendance.html)=1]~[wc:att_MeetingEntry][/if]<!--li in wc -->
+		~[if.~(studentscreenaccess;cumulative.html)=1]<li><a href="cumulative.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.cumulative_info]</a></li>[/if]
+		~[if.~(studentscreenaccess;graduationcheck.html)=1]<li><a href="GraduationPlanner/GraduationProgress.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.graduation_plan_progress,param:]</a></li>[/if]
+		~[if.~(studentscreenaccess;graduationcheck.html)=1]<li><a href="GraduationPlanner/GradPlanSelect.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.graduation_plan_selection,param:]</a></li>[/if]
+		~[if.~(studentscreenaccess;graduationcheck.html)=1]<li><a href="graduationcheck.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.graduation_progress]</a></li>[/if]
+		~[if.~(studentscreenaccess;previousgrades.html)=1]<li><a href="previousgrades.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.historical_grades]</a></li>[/if]
+		~[if.~(studentscreenaccess;honorroll.html)=1]<li><a href="honorroll.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.honor_roll]</a></li>[/if]
+		~[if.~(studentscreenaccess;standards.html)=1]<li><a href="standards.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.standards]</a></li>[/if]
+		~[if.~(studentscreenaccess;studentgradescales.html)=1]<li><a href="studentgradescales.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.student_grade_scale]</a></li>[/if]
+		~[if.~(studentscreenaccess;teachercomments.html)=1]<li><a href="teachercomments.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.teacher_comments]</a></li>[/if]
+		~[if.~(studentscreenaccess;termgrades.html)=1]<li><a href="termgrades.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.term_grades]</a></li>[/if]
+		~[if.~(studentscreenaccess;testlist.html)=1]<li><a href="testlist.html?frn=~(studentfrn)&externalTestTab=notselected">~[text:psx.html.admin_students.more2.test_scores]</a></li>[/if]
+		~[if.~(studentscreenaccess;truancieslist.html)=1]<li><a href="truancieslist.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.truancies]</a></li>[/if]
+		~[if.pref.district_cgiepaccess=1]<li><a href="iep-viewer.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.centris_group__iep_viewer]</a></li>[/if]
+	</ul>
+	<h3>~[text:psx.html.admin_students.more2.administration]</h3>
+	<ul id="std_administration">
+		~[if.~(studentscreenaccess;district/home.html)=1]<li><a href="district/home.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.district_specific]</a></li>[/if]
+		~[if.~(studentscreenaccess;fees.html)=1]<li><a href="fees.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.fee_transactions]</a></li>[/if]
+		~[if.~(studentscreenaccess;log.html)=1]<li><a href="log.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.log_entries]</a></li>[/if]
+		~[if.~(studentscreenaccess;lunch.html)=1]<li><a href="lunch.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.lunch]</a></li>[/if]
+		~[if.~(studentscreenaccess;transactions.html)=1]<li><a href="transactions.html?frn=~(studentfrn)&curstudid=~(curstudid)&colspec=date.time.debit.credit.descr.net.eb.">~[text:psx.html.admin_students.more2.lunch_transactions]</a></li>[/if]
+		~[if.~(studentscreenaccess;parentaccess.html)=1]<li><a href="parentaccess.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.net_access]</a></li>[/if]
+		~[if.~(studentscreenaccess;/admin/seop/home.html)=1]<li><a href="/admin/seop/home.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.seop_review]</a></li>[/if]
+		~[if.~(studentscreenaccess;/admin/students/incidents/home_student.html)=1]<li><a href="/admin/students/incidents/home_student.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.incidents]</a></li>[/if]
+	</ul>
+	<h3>~[text:psx.html.admin_students.more2.enrollment]</h3>
+	<ul id="std_enrollment">
+		~[if.~(studentscreenaccess;activities.html)=1]<li><a href="activities.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.activities]</a></li>[/if]
+		~[if.~(studentscreenaccess;allenrollments.html)=1]<li><a href="allenrollments.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.all_enrollments]</a></li>[/if]
+		~[if.~(studentscreenaccess;functions.html)=1]<li><a href="functions.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.functions]</a></li>[/if]
+		~[if.~(studentscreenaccess;specialprograms.html)=1]<li><a href="specialprograms.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.special_programs]</a></li>[/if]
+		~[if.~(studentscreenaccess;transferinfo.html)=1]<li><a href="transferinfo.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.transfer_info]</a></li>[/if]
+		~[if.~(studentscreenaccess;recordexchange/importStudentRecordPage.action)=1]
+			~[if.plugin.isEnabled.ETS Server]<li><a id="studentTransferID" href="recordexchange/importStudentRecordPage.action?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.import_student_record]</a></li>[/if.plugin.isEnabled.ETS Server]
+		[/if]
+	</ul>
+	<h3>~[text:psx.html.admin_students.more2.scheduling]</h3>
+	<ul id="std_scheduling">
+		~[if.~(studentscreenaccess;schedule.html)=1]<li><a href="schedule.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.bell_schedule_view]</a></li>[/if]
+		~[if.~(studentscreenaccess;schedulelist.html)=1]<li><a href="schedulelist.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.list_view]</a></li>[/if]
+		~[if.~(studentscreenaccess;schedulematrix.html)=1]<li><a href="schedulematrix.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.matrix_view]</a></li>[/if]
+		~[if.~(studentscreenaccess;scheduleplusreq.html)=1]<li><a href="scheduleplusreq.html?frn=~(studentfrn)&schedulerequestyearid=~(schedule.yearidcurrent)">~[text:psx.html.admin_students.more2.modify_schedule]</a></li>[/if]
+		~[if.~(studentscreenaccess;managerequests.html)=1]<li><a href="managerequests.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.request_management]</a></li>[/if]
+		~[if.~(studentscreenaccess;schedulesetup.html)=1]<li><a href="schedulesetup.html?frn=~(studentfrn)">~[text:psx.html.admin_students.more2.scheduling_setup]</a></li>[/if]
+	</ul>
+	~[if.plugin.isEnabled.TIENET Integration]
+	<h3>~[text:psx.html.admin_students.more2.applications]</h3>
+	<ul id="std_applications">
+		<li><a href="/admin/openid/oidredirectaction.action?pluginName=TIENET Integration&studentContext=true" target="_blank" id="navAppTienet" title="~[text:psx.html.admin_students.more2.launch_tienet]">~[text:psx.html.admin_students.more2.tienet]</a></li>
+	</ul>
+	[/if.plugin.isEnabled.TIENET Integration]
+
+<!-- end of #nav-main-frame -->
+</div>
+<div id="cust-leftnav-footer">~[cust.insertion_point:leftnav.footer]</div>
+</div>
+
+</form>
+
+<style>
+#menu-mask {
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 1;
+	background-color: #000000;
+	opacity: 0.25;
+	filter: alpha(opacity=25);
+}
+</style>
+
+<div id="menu-mask"></div>
+~[browser_metrics_footer]
+</body>
+</html>

@@ -1,0 +1,11 @@
+<script>
+	$j(document).ready(function()
+		{
+			$j("table#teacherSectionTable tr[sectionid]").each(function()
+				{
+					$j(this).children("td").eq(-2).after('<td style="max-width:100px;width:7%;"><a href="/teachers/esl_report.html?ac=reportselection&sectionid=' + $j(this).attr("sectionid") + '"><img src="/images/img/newPTG.png" alt="ESL Report" border="0"></a></td>');
+				}
+			);
+		}
+	);
+</script>

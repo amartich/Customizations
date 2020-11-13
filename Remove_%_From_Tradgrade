@@ -1,0 +1,32 @@
+~[if.~(grade_level)=6]
+<script>
+    $j(function(){
+      setTimeout(function(){
+        $j('[id*="openStandard_"]').click();
+       
+        //remove the % and grade headers
+        $j('tr > th#percentcol').remove();
+        $j('tr > th#gradecol').remove();
+       
+        //remove the % and score td's in the assignment row
+        $j('tr.ng-scope > td:nth-child(13)').remove();
+        $j('tr.ng-scope > td:nth-child(13)').remove();
+       
+       
+        //remove the % and score td's in the standard row
+        $j('tr.sub > td:nth-child(11)').remove();
+        $j('tr.sub > td:nth-child(11)').remove();
+       
+        setTimeout(function(){
+        $j('[id*="closeStandard_"]').remove();
+        //remove the % and score td's in the standard row
+        $j('tr.sub > td:nth-child(11)').remove();
+        $j('tr.sub > td:nth-child(11)').remove();
+       
+     }, 500);
+       
+     }, 2000);
+           
+    });
+</script>
+[/if]

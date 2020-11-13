@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation='http://plugin.powerschool.pearson.com plugin.xsd'
+        name="ESL writing Samples"
+        version="1.3"
+        description="ESL links for teachers">
+
+  <links>
+    <link title="ELA placement and Teaching Guidance" display-text="ELA Info" path="https://drive.google.com/drive/folders/1wrzar5HVcrEi8HLE6qhuERouPTA3lcJl">
+      <ui_contexts>
+       <!-- <ui_context id="admin.left_nav" />
+        <ui_context id="admin.header" />-->
+        <ui_context id="teacher.header" />
+        <ui_context id="teacher.pro.apps" />
+         <!-- <ui_context id="guardian.header" />
+        <ui_context id="student.header" />-->
+      </ui_contexts>
+    </link>
+  </links>
+
+ <publisher name="Anyel  Martich">
+    <contact email="amartich@las.ch" />
+  </publisher>
+
+</plugin>

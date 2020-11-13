@@ -1,0 +1,31 @@
+<div id="replaceAsmt">
+ <div class="xteContentWrapper"
+             data-pss-message-prefixes="psx.common,psx.html.admin_students.scores,psx.html.scripts_components_studentscores_views.studentscores"
+             data-require-path="angular,components/studentScores/index,components/shared/index"
+             data-module-name="studentScoresModule,powerSchoolModule"
+             data-ng-init="studentFRN = '~(studentfrn)';
+                           beginningDate = '~(gpv.begdate;encodejsstring)';
+                           endingDate = '~(gpv.enddate;encodejsstring)';
+                           storecode = '~(gpv.fg;encodejsstring)';
+                           isStored = '~[decode;~(frn);031@;true;false]';
+                           showPercent = '~[if.~[dbval;table=termbins;field=SuppressPercentScr;*storecode=~(gpv.fg;tagtext);*termid=~(termid;absolute);*schoolid=~(schoolid)]=0]true[else]false[/if]';
+                           showGrade = '~[if.~[dbval;table=termbins;field=suppressltrgrd;*storecode=~(gpv.fg;tagtext);*termid=~(termid;absolute);*schoolid=~(schoolid)]#true]true[else]false[/if]';
+                           storedDate = '~(datestored)';"
+             data-ng-cloak>
+            <div data-pss-student-assignment-scores
+                 data-begdate="beginningDate" data-enddate="endingDate"
+                 data-termid="~(termid;absolute)" data-sectionid="~(sectionid;absolute)"
+                 data-studentfrn="studentFRN" data-storecode="storecode"
+                 data-isstored="isStored" data-storeddate="storedDate"
+                 data-showpercent="showPercent" data-showgrade="showGrade"
+                 data-showstandards="showStandards"></div>
+</div>
+</div>
+
+<script>
+$j(document).ready(function()
+  {
+    $j('div.xteContentWrapper').replaceWith($j('#replaceAsmt'));
+});
+
+</script>

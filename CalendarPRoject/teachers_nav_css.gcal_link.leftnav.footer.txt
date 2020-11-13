@@ -1,0 +1,13 @@
+
+/*teachers_nav_css.gcal_link.leftnav.footer.txt - this needs to be uploaded to the wildcards folder. 
+Wait 5 minutes or turn customizations on and off again to refresh the cache and make the links show up on the teacher left nav menu.*/
+
+<script type="text/javascript">
+$j(document).ready(function() {	
+    $j('#nav-main ul').append(
+        '<h3>Downloads</h3><li><a href="/teachers/gcalimport/calendar_import_S1.csv">S1 Classes Import</a></li><li><a href="/teachers/gcalimport/calendar_import_S2.csv">S2 Classes Import</a></li>'
+                           
+
+    );
+});
+</script>

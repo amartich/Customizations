@@ -1,0 +1,24 @@
+<!--assuming you have this date stored in a database extension of off 
+    the users table (maybe called U_users_training.trainingdate),
+     and you are displaying the value in this field on a custom page in the admin or teacher portal -
+      a page where you had access to the users dcid, you could do something like this:-->
+
+<style>
+.red {
+color:red;
+}
+</style>
+
+~[tlist_sql;
+select 
+case 
+when round(floor(months_between(sysdate, trainingdate)) /12) > 3 then 'red'
+else 'regular'
+end as color
+, trainingdate 
+from U_users_training
+where U_users_training.usersdcid = ~(rn)]
+
+<span class = "~(color)">Date of training is ~(trainingdate)</span>
+
+[/tlist_sql]
