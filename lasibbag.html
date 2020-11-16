@@ -1,61 +1,43 @@
 <script>
-$j(document).ready(function(){
-var ibAntGrade = $j("#lasibag");
-$j("table:eq(1)").after(ibAntGrade);
-
-});
-</script>
-
-<div id="lasibag">
-~[if#ag.~(course_number)=LASIBAG] ~[if#term1.~(gpv.fg;tagtext)=S1]
-<table>
-<h2>Anticipated IB Total</h2>
-<tr>
-<td style="color:red;">Your anticipated IB Diploma total, based on the below, is: ~[tlist_sql; SELECT sum(asco.actualscoreentered) FROM assignmentscore asco
-JOIN assignmentsection asec ON asec.assignmentsectionid=asco.assignmentsectionid 
-JOIN students s ON asco.studentsdcid=s.dcid
-JOIN sections sec ON sec.dcid=asec.sectionsdcid
-join terms t on t.id = sec.termid and t.yearid = ~(curyearid) and t.schoolid = sec.schoolid
-WHERE s.id=~(curstudid) AND sec.id=~([Sections]id) and sec.termid=~(curyearid)00 ;] ~(pts) [/tlist_sql] points.
-</td>
-</tr>
-</table>
-~[/if#term1]
-    [else#ag.~(course_number)=LASIBAG] ~[if#term2.~(gpv.fg;tagtext)=S2]
-<table>
-<h2>Anticipated IB Total</h2>
-<tr>
-<td style="color:red;">Your anticipated IB Diploma total, based on the below, is: ~[tlist_sql; SELECT sum(asco.actualscoreentered) FROM assignmentscore asco
-JOIN assignmentsection asec ON asec.assignmentsectionid=asco.assignmentsectionid 
-JOIN students s ON asco.studentsdcid=s.dcid
-JOIN sections sec ON sec.dcid=asec.sectionsdcid
-join terms t on t.id = sec.termid and t.yearid = ~(curyearid) and t.schoolid = sec.schoolid
-WHERE s.id=~(curstudid) AND sec.id=~([Sections]id) and sec.termid=~(curyearid)00 ;] ~(pts) [/tlist_sql] points.
-</td>
-</tr>
-</table>
-    ~[/if#term2]
-[/if#ag]
-</div>
-
-
-~[if#z.~[gpv:dt]=studentnumber]
-
-
-
-[/if#z]
-
-~[if#z.~[gpv:dt]=statenumber]
-<script>
-
-
-</script>
-[/if#z]
-
-~[if#z.~[f.in;value=~[gpv:dt];in=lastfirst,firstlast,]=1]
-~[tlist_sql;
-	
-
-
-[/tlist_sql]
-[/if#z]
+    $j(document).ready(function(){
+    var ibAntGrade = $j("#lasibag");
+    $j("table:eq(1)").after(ibAntGrade);
+    
+    });
+    </script>
+    <div id="lasibag">
+    ~[if#ag.~(course_number)=LASIBAG] 
+        ~[if#term1.~(gpv.fg;tagtext)=S1]
+    <table>
+    <h2>Anticipated IB Total</h2>
+    <tr>
+    <td style="color:red;">Your anticipated IB Diploma total, based on the below, is: <strong>~[tlist_sql; SELECT sum(asco.actualscoreentered) FROM assignmentscore asco
+    JOIN assignmentsection asec ON asec.assignmentsectionid=asco.assignmentsectionid 
+    JOIN students s ON asco.studentsdcid=s.dcid
+    JOIN sections sec ON sec.dcid=asec.sectionsdcid
+    JOIN courses c on sec.course_number = c.course_number
+    join terms t on t.id = sec.termid and t.yearid = ~(curyearid) and t.schoolid = sec.schoolid
+    WHERE s.id=~(curstudid) AND c.course_number='LASIBAG' and sec.termid=~(curyearid)00 and asec.duedate <= to_date('~[x:termenddate]','~[dateformat]') 
+    
+    ;] ~(pts) [/tlist_sql]</strong>points.
+    </td>
+    </tr>
+    </table>
+        [/if#term1] 
+        ~[if#term2.~(gpv.fg;tagtext)=S2]
+    <table>
+    <h2>Anticipated IB Total</h2>
+    <tr>
+    <td style="color:red;">Your anticipated IB Diploma total, based on the below, is:  <strong>~[tlist_sql; SELECT sum(asco.actualscoreentered) FROM assignmentscore asco
+    JOIN assignmentsection asec ON asec.assignmentsectionid=asco.assignmentsectionid 
+    JOIN students s ON asco.studentsdcid=s.dcid
+    JOIN sections sec ON sec.dcid=asec.sectionsdcid
+    JOIN courses c on sec.course_number = c.course_number
+    join terms t on t.id = sec.termid and t.yearid = ~(curyearid) and t.schoolid = sec.schoolid
+    WHERE s.id=~(curstudid) AND c.course_number='LASIBAG' and sec.termid=~(curyearid)00 and asec.duedate >= to_date('1/1/2021','~[dateformat]') /* to_date('~[x:termbegdate]','~[dateformat]')*/ ;] ~(pts) [/tlist_sql]</strong>points.
+    </td>
+    </tr>
+    </table>
+        [/if#term2]
+    [/if#ag]
+    </div></strong>
